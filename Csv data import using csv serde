@@ -1,0 +1,20 @@
+DROP TABLE xxxx.yyyyy;
+CREATE TABLE xxxxx.yyyyy 
+(
+ID STRING,
+OWNERID STRING,
+ISDELETED STRING,
+NAME STRING,
+MEETING_DATE DATE,
+PLAN_UPDATE_END DATE, 
+PLAN_UPDATE_START DATE,
+FISCAL_QUARTER STRING
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+with serdeproperties (
+   "separatorChar" = ",",
+   "quoteChar"     = "\""   
+)
+TBLPROPERTIES('serialization.null.format'='', 'skip.header.line.count'='1');  
+
+LOAD DATA INPATH 'maprfs:///user/xxx/zzzz/yyyy' OVERWRITE INTO TABLE xxxx.yyyy;
